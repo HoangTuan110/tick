@@ -94,6 +94,7 @@ const Main = () => {
       m("span.remaining-boxes", `${countTickedCheckboxes()} ticked.`),
       m("br"), m("br"),
       m(".checkbox-grid", state.checkbox_lst), m("br"),
+      m("hr"),
       Results(),
     ]))
   }
