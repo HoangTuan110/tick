@@ -1,0 +1,15 @@
+{
+  "devDependencies": {
+    "mithril": "^2.2.2"
+  },
+  "name": "tick!",
+  "version": "1.0.0",
+  "description": "How fast can you tick checkboxes?",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {},
+  "scripts": {
+    "build": "esbuild --bundle index.js --outdir=dist --minify --sourcemap",
+    "serve": "nodemon --exec serve"
+  }
+}

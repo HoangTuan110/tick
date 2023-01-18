@@ -1,0 +1,12 @@
+* {
+  text-align: center;
+}
+
+/* Disable a checkbox when ticked to prevent accidental re-ticking
+ * which could be disastrous
+ * https://codepen.io/animatedcreativity/pen/ExKRZBz?css-preprocessor=postcss
+ */
+input[type="checkbox"]:checked {
+  opacity: 0.5;
+  pointer-events: none;
+}
