@@ -10,6 +10,7 @@
   "dependencies": {},
   "scripts": {
     "build": "esbuild --bundle index.js --outdir=dist --minify --sourcemap",
+    "build-watch": "nodemon --exec yarn build -w index.js",
     "serve": "nodemon --exec serve"
   }
 }
