@@ -4,7 +4,7 @@ import m from "mithril"
 const r = document.body
 const NUMBER_CHECKBOXES_IN_ONE_ROW = 10
 // Checkbox difficulty (aka the amount of checkboxes for each difficulty)
-const CHECKBOX_DIFF = [10, 50, 250, 500, 1000]
+const CHECKBOX_DIFF = [10, 20, 50, 250, 500, 1000]
 
 // == State ==
 var state = {
