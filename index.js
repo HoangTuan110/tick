@@ -14,8 +14,6 @@ var state = {
   checkbox_diff: 0,
   // The list of checkbox elements
   checkbox_lst: [],
-  // Game win condition
-  winCond: countTickedCheckboxes() === state.checkbox_diff && !state.checkbox_diff
 }
 
 // == Time state ==
@@ -102,10 +100,13 @@ const countTickedCheckboxes = () => {
 
 // The Results section
 const Results = () => {
-  if (state.winCond)
+  if (countTickedCheckboxes() === state.checkbox_diff && !state.checkbox_diff) {
+    // Deactivate the timer when the game ends
+    clearInterval(timer.timeInterval)
     return m(".results", [
       m("b", "Finished.")
     ])
+  }
 }
 
 // Timer component
@@ -116,9 +117,6 @@ const Timer = () => {
   if (countTickedCheckboxes() && !timer.startTime) {
     timer.startTimer()
   }
-  // Un-activate the timer when the game ends
-  if (state.winCond && timer.startTime)
-    clearInterval(timer.timeInterval)
   return m("span.timer", `Time: ${timer.time || "00:00:00"}`)
 }
 
