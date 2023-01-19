@@ -28,10 +28,10 @@ var timer = {
         .padStart(2, "0"),
       seconds = Math.floor((duration / 1000) % 60),
       minutes = Math.floor((duration / (1000 * 60)) % 60),
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
+      minutes = minutes < 10 ? "0" + minutes : minutes
+    seconds = seconds < 10 ? "0" + seconds : seconds
 
-    return minutes + ":" + seconds + ":" + milliseconds;
+    return minutes + ":" + seconds + ":" + milliseconds
   },
   tick: () => timer.time = timer.msToTime(Date.now() - timer.startTime),
   // Timer update interval (for easy clearing)
@@ -100,9 +100,7 @@ const countTickedCheckboxes = () => {
 
 // The Results section
 const Results = () => {
-  if (countTickedCheckboxes() === state.checkbox_diff && !state.checkbox_diff) {
-    // Deactivate the timer when the game ends
-    clearInterval(timer.timeInterval)
+  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff) {
     return m(".results", [
       m("b", "Finished.")
     ])
@@ -117,6 +115,9 @@ const Timer = () => {
   if (countTickedCheckboxes() && !timer.startTime) {
     timer.startTimer()
   }
+  // Deactive the timer when the game ends
+  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff && timer.startTime)
+    clearInterval(timer.timeInterval)
   return m("span.timer", `Time: ${timer.time || "00:00:00"}`)
 }
 
