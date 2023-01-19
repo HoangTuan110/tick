@@ -14,10 +14,14 @@ var state = {
   checkbox_diff: 0,
   // The list of checkbox elements
   checkbox_lst: [],
-  // Timer variables and functions
+}
+
+// == Time state ==
+var timer = {
   startTime: 0, time: "",
-  startTimer: () => state.startTime = Date.now(),
+  startTimer: () => timer.startTime = Date.now(),
   // https://checkboxrace.com/script.js
+  // Convert milliseconds to nicely formatted time
   msToTime: (duration) => {
     var milliseconds = parseInt((duration % 1000) / 10)
         .toString()
@@ -29,8 +33,14 @@ var state = {
 
     return minutes + ":" + seconds + ":" + milliseconds;
   },
-  // Update time
-  tick: () => state.time = state.msToTime(Date.now() - state.startTime),
+  tick: () => timer.time = timer.msToTime(Date.now() - timer.startTime),
+  // Timer update interval (for easy clearing)
+  timeInterval: setInterval(() => {
+    if (timer.startTime) {
+      timer.tick()
+      m.redraw()
+    }
+  }, 10),
 }
 
 // Generate checkboxes and the state for the difficulty given
@@ -101,14 +111,13 @@ const Timer = () => {
   // Only activate the timer if and only if:
   // - One or more checkboxes has been ticked
   // - The time hasn't been activated already
-  if (countTickedCheckboxes() && !state.startTime) {
-    state.startTimer()
-    setInterval(() => {
-      state.tick()
-      m.redraw()
-    }, 10)
+  if (countTickedCheckboxes() && !timer.startTime) {
+    timer.startTimer()
   }
-  return m("span.timer", `Time: ${state.time || "00:00:00"}`)
+  // Un-activate the timer when the game ends
+  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff !== 0 && timer.startTime)
+    clearInterval(timer.timeInterval)
+  return m("span.timer", `Time: ${timer.time || "00:00:00"}`)
 }
 
 // The driver code
