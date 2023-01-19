@@ -14,6 +14,23 @@ var state = {
   checkbox_diff: 0,
   // The list of checkbox elements
   checkbox_lst: [],
+  // Timer variables and functions
+  startTime: 0, time: "",
+  startTimer: () => state.startTime = Date.now(),
+  // https://checkboxrace.com/script.js
+  msToTime: (duration) => {
+    var milliseconds = parseInt((duration % 1000) / 10)
+        .toString()
+        .padStart(2, "0"),
+      seconds = Math.floor((duration / 1000) % 60),
+      minutes = Math.floor((duration / (1000 * 60)) % 60),
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    return minutes + ":" + seconds + ":" + milliseconds;
+  },
+  // Update time
+  tick: () => state.time = state.msToTime(Date.now() - state.startTime),
 }
 
 // Generate checkboxes and the state for the difficulty given
@@ -73,11 +90,25 @@ const countTickedCheckboxes = () => {
 
 // The Results section
 const Results = () => {
-  if (state.checkbox_diff - countTickedCheckboxes() === 0 && state.checkbox_diff !== 0)
+  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff !== 0)
     return m(".results", [
       m("b", "Finished.")
     ])
-  else return m(".results")
+}
+
+// Timer component
+const Timer = () => {
+  // Only activate the timer if and only if:
+  // - One or more checkboxes has been ticked
+  // - The time hasn't been activated already
+  if (countTickedCheckboxes() && !state.startTime) {
+    state.startTimer()
+    setInterval(() => {
+      state.tick()
+      m.redraw()
+    }, 1000)
+  }
+  return m("span.timer", `Time: ${state.time}`)
 }
 
 // The driver code
@@ -91,7 +122,8 @@ const Main = () => {
       generateButtonCheckboxDifficulty(), m("br"), m("br"),
       m("hr"),
       m("span.checkbox-diff", `Difficulty: ${state.checkbox_diff} | `),
-      m("span.remaining-boxes", `${countTickedCheckboxes()} ticked.`),
+      m("span.box-ticked", `${countTickedCheckboxes()} ticked | `),
+      Timer(),
       m("br"), m("br"),
       m(".checkbox-grid", state.checkbox_lst), m("br"),
       m("hr"),
