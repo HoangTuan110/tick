@@ -106,7 +106,7 @@ const Timer = () => {
     setInterval(() => {
       state.tick()
       m.redraw()
-    }, 1000)
+    }, 10)
   }
   return m("span.timer", `Time: ${state.time || "00:00:00"}`)
 }
