@@ -108,7 +108,7 @@ const Timer = () => {
       m.redraw()
     }, 1000)
   }
-  return m("span.timer", `Time: ${state.time}`)
+  return m("span.timer", `Time: ${state.time || "00:00:00"}`)
 }
 
 // The driver code
