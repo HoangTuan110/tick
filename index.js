@@ -135,7 +135,6 @@ const Main = () => {
       Timer(),
       m("br"), m("br"),
       m(".checkbox-grid", state.checkbox_lst), m("br"),
-      m("hr"),
       Results(),
     ]))
   }
