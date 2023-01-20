@@ -98,26 +98,21 @@ const countTickedCheckboxes = () => {
   return state.checkboxes.filter(x => x).length
 }
 
-// The Results section
-const Results = () => {
-  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff) {
-    return m(".results", [
-      m("b", "Finished.")
-    ])
-  }
+// Handle timer operations
+const handleTimer = () => {
+  // Only activate the timer if and only if:
+  // - One or more checkboxes has been ticked
+  // - The time hasn't been activated already
+  if (countTickedCheckboxes() && !timer.startTime)
+    timer.startTimer()
+  // Deactive the timer when the game ends
+  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff && timer.startTime)
+    clearInterval(timer.timeInterval)
 }
 
 // Timer component
 const Timer = () => {
-  // Only activate the timer if and only if:
-  // - One or more checkboxes has been ticked
-  // - The time hasn't been activated already
-  if (countTickedCheckboxes() && !timer.startTime) {
-    timer.startTimer()
-  }
-  // Deactive the timer when the game ends
-  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff && timer.startTime)
-    clearInterval(timer.timeInterval)
+  handleTimer()
   return m("span.timer", `Time: ${timer.time || "00:00:00"}`)
 }
 
@@ -135,7 +130,6 @@ const Main = () => {
       Timer(),
       m("br"), m("br"),
       m(".checkbox-grid", state.checkbox_lst), m("br"),
-      Results(),
     ]))
   }
 }
