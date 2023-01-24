@@ -99,7 +99,9 @@ const Timer = () => {
   // - The time hasn't been activated already
   if (countTickedCheckboxes() && !timer.startTime)
     timer.startTimer()
-  return m("span.timer", `Time: ${timer.time() || "00:00:00"}`)
+  return (!(countTickedCheckboxes() - state.checkbox_diff) && state.checkbox_diff !== 0)
+    ? m("span.timer", `Time: ${timer.time() || "00:00:00"}`)
+    : m("span.timer")
 }
 
 // The driver code
