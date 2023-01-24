@@ -18,7 +18,7 @@ var state = {
 
 // == Time state ==
 var timer = {
-  startTime: 0, time: "",
+  startTime: undefined,
   startTimer: () => timer.startTime = Date.now(),
   // https://checkboxrace.com/script.js
   // Convert milliseconds to nicely formatted time
@@ -33,14 +33,10 @@ var timer = {
 
     return minutes + ":" + seconds + ":" + milliseconds
   },
-  tick: () => timer.time = timer.msToTime(Date.now() - timer.startTime),
-  // Timer update interval (for easy clearing)
-  timeInterval: setInterval(() => {
-    if (timer.startTime) {
-      timer.tick()
-      m.redraw()
-    }
-  }, 10),
+  time: () => {
+    if (timer.startTime)
+      return timer.msToTime(Date.now() - timer.startTime)
+  },
 }
 
 // Generate checkboxes and the state for the difficulty given
@@ -82,8 +78,6 @@ const generateButtonCheckboxDifficulty = () => {
   return CHECKBOX_DIFF.map(
     x => m("button", {
       "onclick": () => {
-        // Assign the new checkbox difficulty and also re-generate the
-        // checkbox list for the new difficulty
         state.checkbox_diff = x
         generateCheckboxes(state.checkbox_diff)
       },
@@ -98,22 +92,14 @@ const countTickedCheckboxes = () => {
   return state.checkboxes.filter(x => x).length
 }
 
-// Handle timer operations
-const handleTimer = () => {
+// Timer component
+const Timer = () => {
   // Only activate the timer if and only if:
   // - One or more checkboxes has been ticked
   // - The time hasn't been activated already
   if (countTickedCheckboxes() && !timer.startTime)
     timer.startTimer()
-  // Deactive the timer when the game ends
-  if (countTickedCheckboxes() === state.checkbox_diff && state.checkbox_diff && timer.startTime)
-    clearInterval(timer.timeInterval)
-}
-
-// Timer component
-const Timer = () => {
-  handleTimer()
-  return m("span.timer", `Time: ${timer.time || "00:00:00"}`)
+  return m("span.timer", `Time: ${timer.time() || "00:00:00"}`)
 }
 
 // The driver code
@@ -126,10 +112,11 @@ const Main = () => {
       m("b.header", "How fast can you tick checkboxes?"), m("br"), m("br"),
       generateButtonCheckboxDifficulty(), m("br"), m("br"),
       m("hr"),
-      m("span.current-box", `${countTickedCheckboxes()}/${state.checkbox_diff} | `),
-      Timer(),
+      m("span.current-box", `${countTickedCheckboxes()}/${state.checkbox_diff}`),
       m("br"), m("br"),
-      m(".checkbox-grid", state.checkbox_lst), m("br"),
+      m(".checkbox-grid", state.checkbox_lst), m("br"), m("br"),
+      m("hr"),
+      Timer(),
     ]))
   }
 }
