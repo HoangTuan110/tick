@@ -39,6 +39,12 @@ var timer = {
   },
 }
 
+// Reset everything
+const reset = () => {
+  timer.startTime = undefined
+  state.checkbox_diff = 0 // Doesn't really needed, since it got changed after changing diff anyways
+}
+
 // Generate checkboxes and the state for the difficulty given
 const generateCheckboxes = (num) => {
   if (num === 0) return
@@ -78,6 +84,7 @@ const generateButtonCheckboxDifficulty = () => {
   return CHECKBOX_DIFF.map(
     x => m("button", {
       "onclick": () => {
+        reset()
         state.checkbox_diff = x
         generateCheckboxes(state.checkbox_diff)
       },
