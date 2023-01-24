@@ -99,16 +99,20 @@ const countTickedCheckboxes = () => {
   return state.checkboxes.filter(x => x).length
 }
 
-// Timer component
-const Timer = () => {
+// Results section
+const Results = () => {
   // Only activate the timer if and only if:
   // - One or more checkboxes has been ticked
   // - The time hasn't been activated already
   if (countTickedCheckboxes() && !timer.startTime)
     timer.startTimer()
-  return (!(countTickedCheckboxes() - state.checkbox_diff) && state.checkbox_diff !== 0)
-    ? m("span.timer", `Time: ${timer.time() || "00:00:00"}`)
-    : m("span.timer")
+
+  if (!(countTickedCheckboxes() - state.checkbox_diff) & state.checkbox_diff !== 0)
+    return m(".results", [
+      m("b", "Results:"),
+      m("p.timer", `Time: ${timer.time()}`)
+    ])
+  else return m(".results", "The results will appear at here after you have finished the game")
 }
 
 // The driver code
@@ -125,7 +129,7 @@ const Main = () => {
       m("br"), m("br"),
       m(".checkbox-grid", state.checkbox_lst), m("br"), m("br"),
       m("hr"),
-      Timer(),
+      Results(),
     ]))
   }
 }
