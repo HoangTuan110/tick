@@ -49,7 +49,7 @@ const reset = () => {
 // https://checkboxrace.com/script.js
 const randomPosOrNeg = (number) => {
   const posOrNeg = Math.random() < 0.5 ? -1 : 1
-  return Math.min(Math.random() * number, window.innerHeight - 10) * posOrNeg;
+  return Math.min(Math.random() * number, window.innerWidth - 1000) * posOrNeg;
 }
 
 // Generate checkboxes and the state for the difficulty given
