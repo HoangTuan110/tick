@@ -54,6 +54,7 @@ const generateCheckboxes = (num) => {
       m("input", {
         "type": "checkbox",
         "class": `checkbox`,
+        "style": `transform: translateY(${5 + i}px)`,
         "onclick": () => {
           state.checkboxes[i] = !state.checkboxes[i]
           //console.log(`Checkbox number ${i} has been ticked!`)
