@@ -130,7 +130,14 @@ const Main = () => {
 
   return {
     view: () => m("main", m("pre", [
-      m("b.header", "How fast can you tick checkboxes?"), m("br"), m("br"),
+      m("p.header", `
+ _   _      _    
+| |_(_) ___| | __
+| __| |/ __| |/ /
+| |_| | (__|   < 
+\\__|_|\\___|_|\\_\\
+        `),
+      m("b.desc", "How fast can you tick checkboxes?"), m("br"), m("br"),
       generateButtonCheckboxDifficulty(), m("br"), m("br"),
       m("hr"),
       m("span.current-box", `${countTickedCheckboxes()}/${state.checkbox_diff}`),
