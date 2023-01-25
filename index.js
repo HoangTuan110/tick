@@ -55,7 +55,7 @@ const generateCheckboxes = (num) => {
         "type": "checkbox",
         "class": `checkbox`,
         "onclick": () => {
-          state.checkboxes[i] = true
+          state.checkboxes[i] = !state.checkboxes[i]
           //console.log(`Checkbox number ${i} has been ticked!`)
         }
       })
