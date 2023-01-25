@@ -61,7 +61,7 @@ const generateCheckboxes = (num) => {
       m("input", {
         "type": "checkbox",
         "class": `checkbox`,
-        "style": `transform: translateY(${randomPosOrNeg(i)}px)`,
+        "style": `transform: translateX(${randomPosOrNeg(i)}px)`,
         "onclick": () => {
           state.checkboxes[i] = !state.checkboxes[i]
           //console.log(`Checkbox number ${i} has been ticked!`)
