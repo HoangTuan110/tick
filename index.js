@@ -48,7 +48,7 @@ const reset = () => {
 // Display the number with random sign
 // https://checkboxrace.com/script.js
 const randomPosOrNeg = (number) => {
-  const posOrNeg = Math.random() < 0.5 ? -1 : 1;
+  const posOrNeg = Math.random() < 0.5 ? -1 : 1
   return Math.min(Math.random() * number, window.innerHeight - 10) * posOrNeg;
 }
 
@@ -61,7 +61,7 @@ const generateCheckboxes = (num) => {
       m("input", {
         "type": "checkbox",
         "class": `checkbox`,
-        "style": `transform: translateY(${randomPosOrNeg(5 + i)}px)`,
+        "style": `transform: translateY(${randomPosOrNeg(i)}px)`,
         "onclick": () => {
           state.checkboxes[i] = !state.checkboxes[i]
           //console.log(`Checkbox number ${i} has been ticked!`)
