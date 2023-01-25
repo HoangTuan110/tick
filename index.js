@@ -45,6 +45,13 @@ const reset = () => {
   state.checkbox_diff = 0 // Doesn't really needed, since it got changed after changing diff anyways
 }
 
+// Display the number with random sign
+// https://checkboxrace.com/script.js
+const randomPosOrNeg = (number) => {
+  const posOrNeg = Math.random() < 0.5 ? -1 : 1;
+  return Math.min(Math.random() * number, window.innerHeight - 10) * posOrNeg;
+}
+
 // Generate checkboxes and the state for the difficulty given
 const generateCheckboxes = (num) => {
   if (num === 0) return
@@ -54,7 +61,7 @@ const generateCheckboxes = (num) => {
       m("input", {
         "type": "checkbox",
         "class": `checkbox`,
-        "style": `transform: translateY(${5 + i}px)`,
+        "style": `transform: translateY(${randomPosOrNeg(5 + i)}px)`,
         "onclick": () => {
           state.checkboxes[i] = !state.checkboxes[i]
           //console.log(`Checkbox number ${i} has been ticked!`)
