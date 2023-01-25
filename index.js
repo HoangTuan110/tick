@@ -53,7 +53,7 @@ const generateCheckboxes = (num) => {
     state.checkbox_lst.push(
       m("input", {
         "type": "checkbox",
-        "class": `box-${i}`,
+        "class": `checkbox`,
         "onclick": () => {
           state.checkboxes[i] = true
           //console.log(`Checkbox number ${i} has been ticked!`)
@@ -88,7 +88,7 @@ const generateButtonCheckboxDifficulty = () => {
         state.checkbox_diff = x
         generateCheckboxes(state.checkbox_diff)
       },
-      "class": `diff-btn-${x}`
+      "class": `diff-btn`
     }, x)
   )
 }
