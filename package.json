@@ -1,6 +1,8 @@
 {
   "devDependencies": {
-    "mithril": "^2.2.2"
+    "mithril": "^2.2.2",
+    "esbuild": "^0.17.5",
+    "serve": "^14.2.0"
   },
   "name": "tick!",
   "version": "1.0.0",
@@ -11,6 +13,7 @@
   "scripts": {
     "build": "esbuild --bundle index.js --outdir=dist --minify --sourcemap",
     "build-watch": "nodemon --exec yarn build -w index.js",
-    "serve": "nodemon --exec serve"
+    "serve-watch": "nodemon --exec serve",
+    "serve": "serve"
   }
 }
