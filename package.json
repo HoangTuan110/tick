@@ -1,9 +1,9 @@
 {
   "devDependencies": {
-    "mithril": "^2.2.2",
+    "@vercel/analytics": "^0.1.8",
     "esbuild": "^0.17.5",
-    "serve": "^14.2.0",
-    "@vercel/analytics": "^0.1.8"
+    "mithril": "^2.2.2",
+    "serve": "^14.2.0"
   },
   "name": "tick!",
   "version": "1.0.0",
