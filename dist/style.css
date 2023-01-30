@@ -15,3 +15,12 @@ input[type="checkbox"]:checked {
   width: 20px;
   height: 20px;
 }
+
+/* Make sure the footer is sitting at the bottom at all times */
+footer {
+  position: fixed;
+  bottom: 15px;
+  font-family: monospace;
+  font-size: 11px;
+  font-weight: bold;
+}
