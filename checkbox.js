@@ -1,5 +1,7 @@
 // == checkbox.js - responsible for all things checkbox-related ==
 
+import m from "mithril"
+
 const NUMBER_CHECKBOXES_IN_ONE_ROW = 10
 // Checkbox difficulty (aka the amount of checkboxes for each difficulty)
 const CHECKBOX_DIFF = [10, 20, 50, 100, 250, 500, 1000]
