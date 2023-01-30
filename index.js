@@ -1,4 +1,7 @@
 import m from "mithril"
+import { inject } from '@vercel/analytics';
+
+inject();
 
 // == Constants ==
 const r = document.body
