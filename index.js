@@ -1,7 +1,9 @@
 // index.js - the meat of the app
 
 import m from "mithril"
-import { inject } from '@vercel/analytics';
+import About from "./about"
+import Credits from "./credits"
+import { inject } from '@vercel/analytics'
 
 inject();
 
@@ -161,4 +163,6 @@ const Main = () => {
 
 m.route(document.body, "/", {
   "/": Main
+  "/about": About,
+  "credits": Credits,
 })
