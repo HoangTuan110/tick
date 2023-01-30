@@ -141,6 +141,7 @@ const Main = () => {
 \\__|_|\\___|_|\\_\\
         `),
       m("b.desc", "How fast can you tick checkboxes?"), m("br"), m("br"),
+      m("b.diff-btn-desc", "Checkbox:"), m("br"), m("br"),
       generateButtonCheckboxDifficulty(), m("br"), m("br"),
       m("hr"),
       m("span.current-box", `${countTickedCheckboxes()}/${state.checkbox_diff}`),
