@@ -9,6 +9,7 @@ inject();
 const NUMBER_CHECKBOXES_IN_ONE_ROW = 10
 // Checkbox difficulty (aka the amount of checkboxes for each difficulty)
 const CHECKBOX_DIFF = [10, 20, 50, 100, 250, 500, 1000]
+const FOOTER_SEPERATOR = m("span", " / ")
 
 // == State ==
 var state = {
@@ -124,8 +125,8 @@ const Results = () => {
 // The footer that contains things
 const Footer = () => {
   return m("footer", [
-    m("a", { href: "#!/about" }, "About"),
-    m("a", { href: "#!/credits" }, "Credits"),
+    m("a", { href: "#!/about" }, "About"), FOOTER_SEPERATOR,
+    m("a", { href: "#!/credits" }, "Credits"), FOOTER_SEPERATOR,
     m("a", { href: "mailto:tsukii@disroot.org" }, "Contact"),
   ])
 }
