@@ -121,6 +121,15 @@ const Results = () => {
   else return m(".results", "The results will appear at here after you have finished the game")
 }
 
+// The footer that contains things
+const Footer = () => {
+  return m("footer", [
+    m("a", { href: "#!/about" }, "About"),
+    m("a", { href: "#!/credits" }, "Credits"),
+    m("a", { href: "mailto:tsukii@disroot.org" }, "Contact"),
+  ])
+}
+
 // The driver code
 const Main = () => {
   // Generate the checkbox list beforehand
@@ -144,6 +153,7 @@ const Main = () => {
       m(".checkbox-grid", state.checkbox_lst), m("br"), m("br"),
       m("hr"),
       Results(),
+      Footer(),
     ]))
   }
 }
