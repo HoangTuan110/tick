@@ -90,7 +90,7 @@ const generateButtonCheckboxDifficulty = () => {
   return CHECKBOX_DIFF.map(
     x => m("button", {
       "onclick": () => {
-        timer.startTimer = undefined
+        timer.startTime = undefined
         state.checkbox_diff = x
         generateCheckboxes(state.checkbox_diff)
       },
