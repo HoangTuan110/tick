@@ -1,11 +1,10 @@
+// index.js - the meat of the app
+
 import m from "mithril"
 import { generateCheckboxes, generateButtonCheckboxDifficulty, countTickedCheckboxes } from "./checkbox"
 import { inject } from '@vercel/analytics';
 
 inject();
-
-// == Constants ==
-const r = document.body
 
 // == State ==
 var state = {
@@ -83,6 +82,6 @@ const Main = () => {
   }
 }
 
-m.route(r, "/", {
+m.route(document.body, "/", {
   "/": Main
 })
