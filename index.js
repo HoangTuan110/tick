@@ -162,7 +162,7 @@ const Main = () => {
 }
 
 m.route(document.body, "/", {
-  "/": Main
+  "/": Main,
   "/about": About,
-  "credits": Credits,
+  "/credits": Credits,
 })
