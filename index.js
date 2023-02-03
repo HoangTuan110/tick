@@ -2,7 +2,6 @@
 
 import m from "mithril"
 import About from "./about"
-import Credits from "./credits"
 import { inject } from '@vercel/analytics'
 
 inject();
