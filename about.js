@@ -29,7 +29,7 @@ const About = () => {
   return {
     view: () => {
       return m("main", m("pre", [
-        m("b.header", "About")
+        m("b.header", "About"),
         m("p", ABOUT_SECTION)
       ]))
     }
