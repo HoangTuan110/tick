@@ -164,5 +164,4 @@ const Main = () => {
 m.route(document.body, "/", {
   "/": Main,
   "/about": About,
-  "/credits": Credits,
 })
